@@ -3,7 +3,6 @@
 
 import os
 from google import genai
-from google.genai.types import HttpOptions
 
 # 1. Configure environment
 API_KEY = os.getenv("GOOGLE_API_KEY", "")
