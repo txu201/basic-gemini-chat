@@ -1,24 +1,17 @@
-# Install in your venv:
-# pip install google-genai
-
 import os
-from google import genai
+from dotenv import load_dotenv
+from google import genai  # Use this import
 
-# 1. Configure environment
-API_KEY = os.getenv("GOOGLE_API_KEY", "")
-client = genai.Client(
-    vertexai=False,           # Developer API, not Vertex AI
-    api_key=API_KEY
-)
+load_dotenv()
+# Make sure GOOGLE_API_KEY is set in your environment or .env
+# i.e., export GOOGLE_API_KEY=your_key_here
 
-# 2. Choose model
-MODEL = "gemini-2.5-flash"   # or "gemini-2.5-pro"
+# Use the default client (reads API key automatically)
+client = genai.Client()
 
-# 3. Send a prompt
+# ✅ Generate content using developer API mode
 response = client.models.generate_content(
-    model=MODEL,
-    contents="Hello Gemini! Explain quantum computing in simple terms.",
-    # Optional structured output, multimodal input, thinking budget, etc.
+    model="gemini-2.5-flash",
+    contents="Tell me a fun fact about the moon."
 )
-
 print(response.text)
